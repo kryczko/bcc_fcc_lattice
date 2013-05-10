@@ -32,13 +32,17 @@ out << 2*rows*columns*stacks  << "\n\n";
 if (type == "bcc")
 {
 
-double c0_x = -2.0, c0_y = -2.0, c0_z = -2.0, c1_x, c1_y;
+double c0_x = -2.0, c0_y = -2.0, c0_z = -2.0, c1_x, c1_y, c1_z = -1.0;
 
-double x0_values[columns], y0_values[rows], x1_values[columns], y1_values[rows];
+double x0_values[columns], y0_values[rows], x1_values[columns], y1_values[rows], z0_values[stacks], z1_values[stacks];
 
 for (int j = 0; j < stacks; j ++)
 {
 	c0_z += 2.0;
+	c1_z += 2.0;
+	z0_values[j] = c0_z;
+	z1_values[j] = c1_z;
+
 	c0_x = -2.0;
 for (int i = 0; i < columns; i ++)
 {	
@@ -54,8 +58,8 @@ for (int i = 0; i < columns; i ++)
 		c1_y = c0_y + 1.0;
 		y0_values[n] = c0_y;
 		y1_values[n] = c1_y;
-		out << 	"C\t" << x0_values[i] << "\t" << y0_values[n] << "\t" << c0_z << endl;
-		out << "C\t" << x1_values[i] << "\t" << y1_values[n] << "\t" << c0_z << endl;
+		out << 	"C\t" << x0_values[i] << "\t" << y0_values[n] << "\t" << z0_values[j] << endl;
+		out << "C\t" << x1_values[i] << "\t" << y1_values[n] << "\t" << z1_values[j]  << endl;
 	}
 }
 }
