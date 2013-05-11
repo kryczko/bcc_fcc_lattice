@@ -15,7 +15,7 @@ string outputfile, type;
 
 //main menu
 
-cout << "\nWelcome to the Carbon Lattice Generator.\n\n";
+cout << "\nWelcome to the Carbon Lattice Generator. The coordinates generated will be placed in a file specified by you and can easily be plotted in vmd.\n\n";
 cout << "Please enter 'bcc' if you would like a body-centered cubic lattice or 'fcc' if you would like a face-centered cubic lattice: ";
 cin >> type; 
 cout << "How many rows of carbon atoms would you like: ";
@@ -24,7 +24,7 @@ cout << "How many columns of carbon atoms would you like: ";
 cin >> columns; 
 cout << "How many stacks of carbon sheets would you like: ";
 cin >> stacks;
-cout << "What is the name of the output file (e.g. data.xyz): ";
+cout << "What is the name of the output file where you would like to store your coordinates (e.g. data.xyz): ";
 cin >> outputfile;
 
 //define output file and open it up
@@ -114,6 +114,9 @@ for (int i = 0; i < columns; i ++)
 }
 }
 }
+
+cout << "\nThe lattice vector for your structure is {" << 2*columns << " " << 2*rows << " " << 2*stacks << "}\n" << endl; 
+
 
 // close the output file and terminate the program
 out.close();
