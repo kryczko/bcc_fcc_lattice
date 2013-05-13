@@ -24,13 +24,10 @@ cout << "How many columns of carbon atoms would you like: ";
 cin >> columns; 
 cout << "How many stacks of carbon sheets would you like: ";
 cin >> stacks;
-<<<<<<< HEAD
 cout << "What is the lattice constant for your structure: ";
 cin >> constant;
 cout << "What is the name of the output file (e.g. data.xyz): ";
-=======
 cout << "What is the name of the output file where you would like to store your coordinates (e.g. data.xyz): ";
->>>>>>> 0c713950864da1da655a5d7a74160564769b5073
 cin >> outputfile;
 
 //define output file and open it up
