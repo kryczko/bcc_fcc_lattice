@@ -12,7 +12,7 @@ int main()
 
 int rows, columns, stacks; // define variables to be used
 string outputfile, type;
-
+double constant;
 //main menu
 
 cout << "\nWelcome to the Carbon Lattice Generator. The coordinates generated will be placed in a file specified by you and can easily be plotted in vmd.\n\n";
@@ -24,7 +24,13 @@ cout << "How many columns of carbon atoms would you like: ";
 cin >> columns; 
 cout << "How many stacks of carbon sheets would you like: ";
 cin >> stacks;
+<<<<<<< HEAD
+cout << "What is the lattice constant for your structure: ";
+cin >> constant;
+cout << "What is the name of the output file (e.g. data.xyz): ";
+=======
 cout << "What is the name of the output file where you would like to store your coordinates (e.g. data.xyz): ";
+>>>>>>> 0c713950864da1da655a5d7a74160564769b5073
 cin >> outputfile;
 
 //define output file and open it up
@@ -34,7 +40,7 @@ out.open(outputfile.c_str());
 
 //define the initial coordinates of the first carbon atom
 
-double c0_x = -2.0, c0_y = -2.0, c0_z = -2.0, c1_x, c1_y, c1_z = -1.0;
+double c0_x = -constant, c0_y = -constant, c0_z = -constant, c1_x, c1_y, c1_z = -constant/2;
 
 double x0_values[columns], y0_values[rows], x1_values[columns], y1_values[rows], z0_values[stacks], z1_values[stacks];
 
@@ -47,24 +53,24 @@ out << 2*rows*columns*stacks << "\n\n"; // print how many atoms there are
 
 for (int j = 0; j < stacks; j ++)   //for loops to produce the 3d points
 {
-	c0_z += 2.0;
-	c1_z += 2.0;
+	c0_z += constant;
+	c1_z += constant;
 	z0_values[j] = c0_z;
 	z1_values[j] = c1_z;
 
-	c0_x = -2.0;
+	c0_x = -constant;
 for (int i = 0; i < columns; i ++)
 {	
-	c0_x += 2.0;
-	c1_x = c0_x + 1.0;
+	c0_x += constant;
+	c1_x = c0_x + constant/2;
 	x0_values[i] = c0_x;
 	x1_values[i] = c1_x;
 
-	c0_y = -2.0;
+	c0_y = -constant;
 	for (int n = 0; n < rows; n ++)
 	{
-		c0_y += 2.0;
-		c1_y = c0_y + 1.0;
+		c0_y += constant;
+		c1_y = c0_y + constant/2;
 		y0_values[n] = c0_y;
 		y1_values[n] = c1_y;
 		out << 	"C\t" << x0_values[i] << "\t" << y0_values[n] << "\t" << z0_values[j] << endl;
@@ -85,25 +91,25 @@ out << 4*rows*columns*stacks << "\n\n";  // print out the number of atoms
 
 for (int j = 0; j < stacks; j ++) // for loops to print the atoms coordinates
 {
-        c0_z += 2.0;
-        c1_z += 2.0;
+        c0_z += constant;
+        c1_z += constant;
 
         z0_values[j] = c0_z;
         z1_values[j] = c1_z;
 
-        c0_x = -2.0;
+        c0_x = -constant;
 for (int i = 0; i < columns; i ++)
 {
-        c0_x += 2.0;
-        c1_x = c0_x + 1.0;
+        c0_x += constant;
+        c1_x = c0_x + constant/2;
         x0_values[i] = c0_x;
         x1_values[i] = c1_x;
 
-        c0_y = -2.0;
+        c0_y = -constant;
         for (int n = 0; n < rows; n ++)
         {
-                c0_y += 2.0;
-                c1_y = c0_y + 1.0;
+                c0_y += constant;
+                c1_y = c0_y + constant/2;
                 y0_values[n] = c0_y;
                 y1_values[n] = c1_y;
                 out <<  "C\t" << x0_values[i] << "\t" << y0_values[n] << "\t" << z0_values[j] << endl;
@@ -115,8 +121,8 @@ for (int i = 0; i < columns; i ++)
 }
 }
 
-cout << "\nThe lattice vector for your structure is {" << 2*columns << " " << 2*rows << " " << 2*stacks << "}\n" << endl; 
 
+cout << "\nThe lattice vector for your periodic structure is {" << columns*constant << " " << rows*constant << " " << stacks*constant << "}.\n\n";
 
 // close the output file and terminate the program
 out.close();
